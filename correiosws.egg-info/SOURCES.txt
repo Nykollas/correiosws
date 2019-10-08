@@ -1,0 +1,6 @@
+README.md
+setup.py
+correiosws.egg-info/PKG-INFO
+correiosws.egg-info/SOURCES.txt
+correiosws.egg-info/dependency_links.txt
+correiosws.egg-info/top_level.txt

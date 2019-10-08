@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: correiosws
+Version: 1.0.0
+Summary: Conjuneto de técnicas para acesso ao serviços da API do Correios
+Home-page: https://github.com/Nykollas/correiosws
+Author: Nykollas
+Author-email: nicolauarti09@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
