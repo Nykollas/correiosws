@@ -22,7 +22,7 @@ def calcPrazo(origin_cep, destiny_cep, service_code):
 		print("Error ocurred:"+ str(data.status_code))
 
 
-#Calcula o prazo dado o CEP de destino e o CEP de origem, e também calcula o preço do frete
+#Calcula o prazo dado o CEP de destino e o CEP de origem, e também calcula o preço do frete, com a data atual
 def calcPrecoPrazo(	nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
@@ -58,7 +58,7 @@ def calcPrecoPrazo(	nCdEmpresa="",
 		print(res)
 	else:
 		print("Error: " + str(data.status_code))
-
+#Calcula somente o prazo com uma data especificada  	..
 def calcPrazoData(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 	endpoint = "https://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoData?"
 	req_url = endpoint + "nCdServico=" + nCdServico \
@@ -72,7 +72,7 @@ def calcPrazoData(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
-	
+#Calcula o prazo considerando restrição de entrega 	
 def calcPrazoRestricao(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 	endpoint = "https://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazoRestricao?"
 	req_url = endpoint + "nCdServico=" + nCdServico \
@@ -86,7 +86,7 @@ def calcPrazoRestricao(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
-
+#Calcula somente o preço com a data atual 
 def calcPreco(	nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
@@ -121,7 +121,7 @@ def calcPreco(	nCdEmpresa="",
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
-
+#Calcula somente o preço com uma data especificada 
 def calcPrecoData(	nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
@@ -135,7 +135,8 @@ def calcPrecoData(	nCdEmpresa="",
 			nVlDiametro="", 	#cm
 			sCdMaoPropria="", 	
 			nVlValorDeclarado="", 	
-			sCdAvisoRecebimento=""):
+			sCdAvisoRecebimento=""
+		 	sDtCalculo=""):
 	endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoData?" 
 	req_url = endpoint      + "nCdEmpresa=" + nCdEmpresa \
 				+ "&sDsSenha=" + sDsSenha \
@@ -150,13 +151,16 @@ def calcPrecoData(	nCdEmpresa="",
 				+ "&nVlDiametro=" + nVlDiametro \
 				+ "&sCdMaoPropria=" + sCdMaoPropria \
 				+ "&nVlValorDeclarado=" + nVlValorDeclarado \
-				+ "&sCdAvisoRecebimento=" + nVlValorDeclarado
+				+ "&sCdAvisoRecebimento=" + nVlValorDeclarado \
+				+ "&sDtCalculo=" + nVlValorDeclarado \
 	data = req.get(req_url)
 	if(data.status_code==200):
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
-
+		
+		
+#Calcula os preços dos serviços FAC 
 def calcPrecoFac(	nCdServico="04510", 	 	
 			nVlPeso="0.5", #kg
 			strDataCalculo="" ):
@@ -173,7 +177,7 @@ def calcPrecoFac(	nCdServico="04510",
 
 
 
-
+#Calcula o preço e o prazo com uma data especificada 
 def calcPrecoPrazoData(	nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
@@ -209,7 +213,7 @@ def calcPrecoPrazoData(	nCdEmpresa="",
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
-
+#Calcula o preço e o prazo considerando as restrições de entrega 
 def calcPrecoPrazoRestricao(	nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
@@ -248,6 +252,7 @@ def calcPrecoPrazoRestricao(	nCdEmpresa="",
 
 
 
+#Lista os serviços que estão disponíveis para cálculo de preço e/ou prazo 
 def listaServicos():
 		endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/ListaServicos?" 
 		req_url = endpoint
@@ -257,7 +262,7 @@ def listaServicos():
 		else:	
 			print("Error: " + str(data.status_code))
 
-
+#Lista os serviços que são calculados pelo STAR 
 def listaServicosSTAR():
 		endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/ListaServicosSTAR?" 
 		req_url = endpoint
@@ -267,7 +272,7 @@ def listaServicosSTAR():
 		else:
 			
 			print("Error: " + str(data.status_code))
-
+#Método para mostrar se o trecho consultado utiliza modal aéreo ou terrestre 
 def verificaModal(nCdServico="",
 		sCepOrigem="", 
 		sCepDestino=""):
@@ -280,7 +285,7 @@ def verificaModal(nCdServico="",
 		else:			
 			print("Error: " + str(data.status_code))
 
-
+#Retorna a versão atual do componente 
 def getVersao():
 		endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/getVersao?" 
 		req_url = endpoint
