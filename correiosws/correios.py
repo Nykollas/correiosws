@@ -135,7 +135,7 @@ def calcPrecoData(	nCdEmpresa="",
 			nVlDiametro="", 	#cm
 			sCdMaoPropria="", 	
 			nVlValorDeclarado="", 	
-			sCdAvisoRecebimento=""
+			sCdAvisoRecebimento="",
 		 	sDtCalculo=""):
 	endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoData?" 
 	req_url = endpoint      + "nCdEmpresa=" + nCdEmpresa \
@@ -152,7 +152,7 @@ def calcPrecoData(	nCdEmpresa="",
 				+ "&sCdMaoPropria=" + sCdMaoPropria \
 				+ "&nVlValorDeclarado=" + nVlValorDeclarado \
 				+ "&sCdAvisoRecebimento=" + nVlValorDeclarado \
-				+ "&sDtCalculo=" + nVlValorDeclarado \
+				+ "&sDtCalculo=" + nVlValorDeclarado 
 	data = req.get(req_url)
 	if(data.status_code==200):
 		print(data.content)
