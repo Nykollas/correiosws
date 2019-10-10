@@ -78,7 +78,7 @@ def calc_prazo_data(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 
 		print(data.content)
 	else:
-		print("Error: " + str(data.status_code))]
+		print("Error: " + str(data.status_code))
 
 #Calcula o prazo considerando restrição de entrega 	
 def calc_prazo_restricao(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
