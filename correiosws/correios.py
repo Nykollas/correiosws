@@ -21,9 +21,9 @@ def calc_prazo(origin_cep, destiny_cep, service_code):
 	else:
 		print("Error ocurred:"+ str(data.status_code))
 
-
 #Calcula o prazo dado o CEP de destino e o CEP de origem, e também calcula o preço do frete, com a data atual
-def calc_preco_prazo(	nCdEmpresa="", 	
+def calc_preco_prazo(	
+			nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
 			sCepOrigem="", 	
@@ -56,9 +56,15 @@ def calc_preco_prazo(	nCdEmpresa="",
 	data = req.get(req_url)
 	if(data.status_code==200):
 		res = xmltodict.parse(data.content)
-		return res
+		res["cResultado"].pop('@xmlns:xsd')
+		res["cResultado"].pop('@xmlns:xsi')	
+		res["cResultado"].pop('@xmlns')	
+		res = res["cResultado"]["cServico"]	
+		res_json = json.dumps(res, ident=4)
+		return res_json
 	else:
 		print("Error: " + str(data.status_code))
+
 #Calcula somente o prazo com uma data especificada  	..
 def calc_prazo_data(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 	endpoint = "https://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoData?"
@@ -72,7 +78,8 @@ def calc_prazo_data(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 
 		print(data.content)
 	else:
-		print("Error: " + str(data.status_code))
+		print("Error: " + str(data.status_code))]
+
 #Calcula o prazo considerando restrição de entrega 	
 def calc_prazo_restricao(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 	endpoint = "https://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazoRestricao?"
@@ -88,7 +95,8 @@ def calc_prazo_restricao(nCdServico, sCepOrigem, sCepDestino, sDtCalculo):
 	else:
 		print("Error: " + str(data.status_code))
 #Calcula somente o preço com a data atual 
-def calc_preco(	nCdEmpresa="", 	
+def calc_preco(	
+			nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
 			sCepOrigem="", 	
@@ -122,8 +130,10 @@ def calc_preco(	nCdEmpresa="",
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
+
 #Calcula somente o preço com uma data especificada 
-def calc_preco_data(	nCdEmpresa="", 	
+def calc_preco_data(	
+			nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
 			sCepOrigem="", 	
@@ -162,7 +172,8 @@ def calc_preco_data(	nCdEmpresa="",
 		
 		
 #Calcula os preços dos serviços FAC 
-def calc_preco_fac(	nCdServico="04510", 	 	
+def calc_preco_fac(	
+			nCdServico="04510", 	 	
 			nVlPeso="0.5", #kg
 			strDataCalculo="" ):
 	endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoData?" 
@@ -179,7 +190,8 @@ def calc_preco_fac(	nCdServico="04510",
 
 
 #Calcula o preço e o prazo com uma data especificada 
-def calc_preco_prazo_data(	nCdEmpresa="", 	
+def calc_preco_prazo_data(	
+			nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
 			sCepOrigem="", 	
@@ -214,8 +226,10 @@ def calc_preco_prazo_data(	nCdEmpresa="",
 		print(data.content)
 	else:
 		print("Error: " + str(data.status_code))
+
 #Calcula o preço e o prazo considerando as restrições de entrega 
-def calc_preco_prazo_restricao(	nCdEmpresa="", 	
+def calc_preco_prazo_restricao(	
+			nCdEmpresa="", 	
 			sDsSenha="", 	
 			nCdServico="", 	
 			sCepOrigem="", 	

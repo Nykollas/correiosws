@@ -1,5 +1,6 @@
 #_*_coding:utf-8_*_
 from correiosws import correios
+import json
 #Cálculo do preço de transporte e do prazo
 nCdEmpresa=""
 sDsSenha=""
@@ -31,6 +32,10 @@ data = correios.calc_preco_prazo(
         nVlValorDeclarado=nVlValorDeclarado,
         sCdAvisoRecebimento=sCdAvisoRecebimento,
     )
+print(data)
 
-print(dir(data))
+
+
+
+
 
