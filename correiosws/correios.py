@@ -52,10 +52,11 @@ def calc_preco_prazo(	nCdEmpresa="",
 				+ "&sCdMaoPropria=" + sCdMaoPropria \
 				+ "&nVlValorDeclarado=" + nVlValorDeclarado \
 				+ "&sCdAvisoRecebimento=" + nVlValorDeclarado
+	print("URL:\n\n"+req_url+ "\n\n")
 	data = req.get(req_url)
 	if(data.status_code==200):
-		res = xmltodict.parse(data)
-		print(res)
+		res = xmltodict.parse(data.content)
+		return res
 	else:
 		print("Error: " + str(data.status_code))
 #Calcula somente o prazo com uma data especificada  	..
