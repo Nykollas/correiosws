@@ -1,4 +1,4 @@
-from .correios import calcPrazo
-from .rastro import getRastro
+from .correios import calc_prazo
+from .rastro import get_rastro
 
 name="correiosws"
