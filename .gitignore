@@ -9,4 +9,5 @@ dist/
 ./setup.cfg
 temp
 build
+.init.py.swp
 
