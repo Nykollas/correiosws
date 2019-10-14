@@ -15,7 +15,8 @@ nVlDiametro="15"
 sCdMaoPropria="N"
 nVlValorDeclarado=str(0)
 sCdAvisoRecebimento="N"
-data = correios.calc_preco_prazo(
+sDtCalculo=""
+data = correios.calc_preco_prazo_data(
         nCdEmpresa=nCdEmpresa,
         sDsSenha=sDsSenha,
         nCdServico=nCdServico,
@@ -30,6 +31,7 @@ data = correios.calc_preco_prazo(
         sCdMaoPropria=sCdMaoPropria,
         nVlValorDeclarado=nVlValorDeclarado,
         sCdAvisoRecebimento=sCdAvisoRecebimento,
+	sDtCalculo=sDtCalculo,
     )
 print(data)
 
