@@ -21,6 +21,14 @@ def calc_data_maxima(object_code):
 		object_code = str(object_code) 
 	endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcDataMaxima?"
 	reqUrl = endpoint + "codigoObjeto=" + object_code	
+	data = req.get(req_url)
+	if(data.status_code == 200):
+		res = xmltodict.parse(data.content)
+		res = format_dict_response(res)
+		res_json = json.dumps(res, indent=4)
+		return res_json
+	else:	
+		print("Error ocurred:" + str(data.status_code))
 
 #Calcula somente o prazo dado o CEP de destino e o CEP de origem
 def calc_prazo(origin_cep, destiny_cep, service_code):
@@ -139,7 +147,7 @@ def calc_preco(
 				+ "&nVlDiametro=" + nVlDiametro \
 				+ "&sCdMaoPropria=" + sCdMaoPropria \
 				+ "&nVlValorDeclarado=" + nVlValorDeclarado \
-				+ "&sCdAvisoRecebimento=" + nVlValorDeclarado
+				+ "&sCdAvisoRecebimento=" + sCdAvisoRecebimento
 	data = req.get(req_url)
 	if(data.status_code==200):
 			res = xmltodict.parse(data.content)
@@ -224,7 +232,8 @@ def calc_preco_prazo_data(
 			nVlDiametro="", 	#cm
 			sCdMaoPropria="", 	
 			nVlValorDeclarado="", 	
-			sCdAvisoRecebimento=""):
+			sCdAvisoRecebimento=""
+			sDtCalculo=""):
 	endpoint = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazoData?" 
 	req_url = endpoint      + "nCdEmpresa=" + nCdEmpresa \
 				+ "&sDsSenha=" + sDsSenha \
@@ -240,7 +249,7 @@ def calc_preco_prazo_data(
 				+ "&sCdMaoPropria=" + sCdMaoPropria \
 				+ "&nVlValorDeclarado=" + nVlValorDeclarado \
 				+ "&sCdAvisoRecebimento=" + nVlValorDeclarado \
-				+ "&sDtCalculo=" + nVlValorDeclarado
+				+ "&sDtCalculo=" + sDtCalculo
 	data = req.get(req_url)
 	if(data.status_code==200):
 		res = xmltodict.parse(data.content)

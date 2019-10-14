@@ -1,7 +1,6 @@
 import requests as req
 import xmltodict
 
-
 def get_rastro(user, pass, obj):
 
 	endpoint = "https://webservice.correios.com.br/service/rastro/Rastro.wsdl?"
@@ -22,11 +21,6 @@ def get_rastro(user, pass, obj):
 		print(res)
 	else:
 		print("Error: " + data.status_code)
-
-
-
-
-
 
 
 
