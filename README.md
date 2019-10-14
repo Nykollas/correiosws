@@ -15,7 +15,7 @@ $ pip3 install git+https://github.com/Nykollas/correiosws
 ### Importação
 
 ```
-#Importando módulo com métodospara cálculo de fretes e prazo de entrega
+#Importando módulo com métodos para cálculo de fretes e prazo de entrega
 from correiosws import correios
 
 #Importando módulo com métodos para rastreamento de mercadorias
