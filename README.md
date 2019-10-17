@@ -23,7 +23,3 @@ from correiosws import rastro
 
 ```
 
-## Atualizações
-
-Adicionados alguns teste  com o fim de possibilitar que algumas requisições sejam testadas de forma prática.
-Os teste podem ser encontrados na pasta test.
